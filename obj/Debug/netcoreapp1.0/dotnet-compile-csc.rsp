@@ -83,4 +83,5 @@
 -r:"/Users/DarkGem/.nuget/packages/System.Threading.Timer/4.0.1-rc2-24027/ref/netstandard1.2/System.Threading.Timer.dll"
 -r:"/Users/DarkGem/.nuget/packages/System.Xml.ReaderWriter/4.0.11-rc2-24027/ref/netstandard1.3/System.Xml.ReaderWriter.dll"
 -r:"/Users/DarkGem/.nuget/packages/System.Xml.XDocument/4.0.11-rc2-24027/ref/netstandard1.3/System.Xml.XDocument.dll"
+"/Users/DarkGem/Projects/expressionTreeGenerator/ExpressionTree.cs"
 "/Users/DarkGem/Projects/expressionTreeGenerator/Program.cs"
