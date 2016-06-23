@@ -12,7 +12,7 @@ public class ExpressionTree
     private StringBuilder constant = new StringBuilder("");
     private ParameterExpression jobcode = Expression.Parameter(typeof(string),"x");
     private ParameterExpression centro = Expression.Parameter(typeof(string),"y");
-    private string operators = "=!&|";
+    private string operators = "=&|>";
 
     public Func<string,string,bool> ContructFunction(string function){
        string postfix = function;
@@ -51,12 +51,13 @@ public class ExpressionTree
               switch (pos)
               {
                   case "|":
+                   // Console.WriteLine(operand1.ToString()+ "  "+operand2.ToString());
                     stack.Push(Expression.OrElse(operand1,operand2));
                     break;
                   case "&":
                     stack.Push(Expression.AndAlso(operand1,operand2));
                     break;
-                case "!":
+                case ">":
                     stack.Push(Expression.NotEqual(operand1,operand2));
                     break;
                 case "=":
