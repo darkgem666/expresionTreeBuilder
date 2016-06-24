@@ -2,8 +2,9 @@
 using System.Linq.Expressions;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
+using System.Linq;
+
 namespace ConsoleApplication
 {
 public class ExpressionTree
@@ -75,6 +76,51 @@ public class ExpressionTree
       return f;
       }
 
+
+      public Func<string,string,bool> getTree (string regla){
+          
+          List<string> postfijo = regla.Split(',').ToList();
+        Stack<Expression> stack = new Stack<Expression>();
+        int i=0;
+          foreach (string item in postfijo)
+          {
+              
+            if (!operators.Contains(item))
+                if (Int32.TryParse(item,out i)) 
+                  stack.Push(Expression.Constant(item));
+              else if (item.Equals("x"))
+                   stack.Push(jobcode);
+                else
+                    stack.Push(centro);
+            else
+                {
+                     Expression operand1 = stack.Pop();
+                    Expression operand2 = stack.Pop();
+                    switch (item)
+                {
+                    case "|":
+                        stack.Push(Expression.OrElse(operand1,operand2));
+                        break;
+                    case "&":
+                        stack.Push(Expression.AndAlso(operand1,operand2));
+                        break;
+                    case ">":
+                        stack.Push(Expression.NotEqual(operand1,operand2));
+                        break;
+                    case "=":
+                        stack.Push(Expression.Equal(operand1,operand2));
+                    break;
+                }
+                    
+                }
+
+          }
+
+          Expression result = stack.Pop();
+          Expression<Func<string,string,bool>> exp = Expression.Lambda<Func<string,string,bool>>(result,jobcode,centro);
+          return exp.Compile();
+      }
+        
 
     }
 }
