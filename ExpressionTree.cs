@@ -120,6 +120,8 @@ public class ExpressionTree
           Expression<Func<string,string,bool>> exp = Expression.Lambda<Func<string,string,bool>>(result,jobcode,centro);
           return exp.Compile();
       }
+
+      
         
 
     }
